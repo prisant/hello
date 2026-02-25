@@ -5,4 +5,6 @@ This file is auto-generated from git history after each commit.
 
 ## Unreleased
 
-- Initial project setup
+- docs: generate changelog from initial commit (4816be0)
+- Initial commit: hello project template (aef3c06)
+
