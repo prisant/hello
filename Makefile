@@ -1,4 +1,4 @@
-.PHONY: install install-hooks test lint format typecheck changelog clean all
+.PHONY: install install-hooks test lint format typecheck changelog docs docs-build clean all
 
 install:
 	pip install -e ".[dev]"
@@ -25,6 +25,12 @@ typecheck:
 
 changelog:
 	./scripts/generate_changelog.sh
+
+docs:
+	mkdocs serve
+
+docs-build:
+	mkdocs build
 
 clean:
 	rm -rf build/ dist/ *.egg-info .pytest_cache .mypy_cache .coverage htmlcov/

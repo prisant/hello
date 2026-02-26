@@ -29,7 +29,11 @@ classifiers = [
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=7.0"]
+dev = [
+    "pytest>=7.0",
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.0",
+]
 
 [project.scripts]
 hello = "hello.main:main"
@@ -38,6 +42,7 @@ hello = "hello.main:main"
 Homepage = "https://github.com/yourname/hello"
 Repository = "https://github.com/yourname/hello"
 Issues = "https://github.com/yourname/hello/issues"
+Documentation = "https://yourname.github.io/hello"
 Changelog = "https://github.com/yourname/hello/blob/main/CHANGELOG.md"
 
 [tool.pytest.ini_options]
