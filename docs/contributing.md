@@ -6,7 +6,7 @@ and what to keep in mind.
 ## Development setup
 
 ```bash
-git clone https://github.com/yourname/hello.git
+git clone https://github.com/prisant/hello.git
 cd hello_project
 
 python -m venv .venv

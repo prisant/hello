@@ -11,7 +11,7 @@
 Clone the repository and install in a virtual environment:
 
 ```bash
-git clone https://github.com/yourname/hello.git
+git clone https://github.com/prisant/hello.git
 cd hello_project
 
 python -m venv .venv

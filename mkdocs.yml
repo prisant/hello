@@ -1,7 +1,7 @@
 site_name: hello
 site_description: A tiny greeter app demonstrating a multifile Python project structure
-repo_url: https://github.com/yourname/hello
-repo_name: yourname/hello
+repo_url: https://github.com/prisant/hello
+repo_name: prisant/hello
 
 theme:
   name: material

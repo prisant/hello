@@ -5,7 +5,7 @@ This file is auto-generated from git history after each commit.
 
 ## Unreleased
 
-- fix: address review findings (86c4729)
+- fix: address review findings (3426fcd)
 - docs: add MkDocs documentation (7f933dc)
 - Start v0.2.0 development (6fd361d)
 
