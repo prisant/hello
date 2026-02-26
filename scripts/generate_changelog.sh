@@ -23,13 +23,12 @@ This file is auto-generated from git history after each commit.
 
 HEADER
 
-# Get tags sorted by version (newest first), falling back to creation date
-TAGS=$(git tag --sort=-version:refname 2>/dev/null || true)
+# Get tags sorted by version (newest first)
+mapfile -t TAG_ARRAY < <(git tag --sort=-version:refname 2>/dev/null || true)
 
 # Unreleased commits (since last tag, or all if no tags)
-if [ -n "$TAGS" ]; then
-    LATEST_TAG=$(echo "$TAGS" | head -n1)
-    UNRELEASED=$(git log "$LATEST_TAG"..HEAD --pretty=format:"- %s (%h)" \
+if [ ${#TAG_ARRAY[@]} -gt 0 ]; then
+    UNRELEASED=$(git log "${TAG_ARRAY[0]}"..HEAD --pretty=format:"- %s (%h)" \
         --no-merges | grep -vE "^- (chore|wip):" || true)
 else
     UNRELEASED=$(git log --pretty=format:"- %s (%h)" \
@@ -43,32 +42,24 @@ if [ -n "$UNRELEASED" ]; then
     echo "" >> "$CHANGELOG"
 fi
 
-# Tagged releases
-PREV=""
-for TAG in $TAGS; do
+# Tagged releases — iterate newest to oldest
+for i in "${!TAG_ARRAY[@]}"; do
+    TAG="${TAG_ARRAY[$i]}"
     TAG_DATE=$(git log -1 --format="%as" "$TAG")
     echo "## $TAG — $TAG_DATE" >> "$CHANGELOG"
     echo "" >> "$CHANGELOG"
 
-    if [ -n "$PREV" ]; then
-        RANGE="$TAG..$PREV"
-    else
-        # Most recent tag — commits are already shown in Unreleased
-        # Show commits between this tag and the one before it
-        NEXT_TAG=$(echo "$TAGS" | grep -A1 "^${TAG}$" | tail -n1)
-        if [ "$NEXT_TAG" = "$TAG" ]; then
-            # Only one tag — show all commits up to this tag
-            RANGE="$TAG"
-        else
-            RANGE="$NEXT_TAG..$TAG"
-        fi
-    fi
+    # Next index is the older tag
+    NEXT_INDEX=$((i + 1))
 
-    if [ "$RANGE" = "$TAG" ]; then
-        COMMITS=$(git log "$TAG" --pretty=format:"- %s (%h)" \
+    if [ $NEXT_INDEX -lt ${#TAG_ARRAY[@]} ]; then
+        # Commits between the older tag and this tag
+        OLDER_TAG="${TAG_ARRAY[$NEXT_INDEX]}"
+        COMMITS=$(git log "$OLDER_TAG".."$TAG" --pretty=format:"- %s (%h)" \
             --no-merges | grep -vE "^- (chore|wip):" || true)
     else
-        COMMITS=$(git log "$RANGE" --pretty=format:"- %s (%h)" \
+        # Oldest tag — show all commits up to and including this tag
+        COMMITS=$(git log "$TAG" --pretty=format:"- %s (%h)" \
             --no-merges | grep -vE "^- (chore|wip):" || true)
     fi
 
@@ -79,5 +70,4 @@ for TAG in $TAGS; do
     fi
 
     echo "" >> "$CHANGELOG"
-    PREV="$TAG"
 done

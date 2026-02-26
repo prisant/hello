@@ -5,7 +5,8 @@ This file is auto-generated from git history after each commit.
 
 ## Unreleased
 
-- docs: add MkDocs documentation (2d2cc22)
+- fix: address review findings (86c4729)
+- docs: add MkDocs documentation (7f933dc)
 - Start v0.2.0 development (6fd361d)
 
 ## v0.1.0 — 2026-02-25

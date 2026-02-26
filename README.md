@@ -7,7 +7,7 @@ A tiny greeter app demonstrating a multifile Python project structure.
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e ".[dev]"
+make install
 ```
 
 ## Usage
@@ -37,6 +37,9 @@ make all
 
 # Regenerate changelog manually
 make changelog
+
+# Serve documentation locally
+make docs
 ```
 
 ## Changelog
@@ -63,11 +66,20 @@ hello_project/
 ├── .gitignore
 ├── Makefile
 ├── pyproject.toml         # Project config, metadata, dependencies
+├── mkdocs.yml             # Documentation config
+├── docs/
+│   ├── index.md           # Project overview
+│   ├── getting-started.md # Installation and usage
+│   ├── api.md             # API reference
+│   └── contributing.md    # Contributor guide
 ├── scripts/
-│   └── generate_changelog.sh
+│   ├── generate_changelog.sh
+│   └── hooks/
+│       └── post-commit    # Changelog automation hook
 ├── src/
 │   └── hello/
 │       ├── __init__.py    # Package init, version
+│       ├── py.typed       # PEP 561 type checking marker
 │       ├── main.py        # Entry point (CLI args → Settings → Greeter)
 │       ├── config.py      # Settings from args or env vars
 │       ├── models.py      # Greeting dataclass
@@ -75,6 +87,7 @@ hello_project/
 │       ├── exceptions.py  # Custom errors
 │       └── utils.py       # Time-of-day salutation helper
 └── tests/
+    ├── __init__.py
     ├── conftest.py        # Shared pytest fixtures
     └── test_greeter.py    # Tests for all modules
 ```

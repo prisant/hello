@@ -1,4 +1,4 @@
-.PHONY: install install-hooks test lint format typecheck changelog docs docs-build clean all
+.PHONY: install install-hooks test test-cov lint format typecheck changelog docs docs-build clean all
 
 install:
 	pip install -e ".[dev]"
@@ -33,7 +33,7 @@ docs-build:
 	mkdocs build
 
 clean:
-	rm -rf build/ dist/ *.egg-info .pytest_cache .mypy_cache .coverage htmlcov/
+	rm -rf build/ dist/ *.egg-info .pytest_cache .mypy_cache .coverage htmlcov/ site/
 	find . -type d -name __pycache__ -exec rm -rf {} +
 
 all: lint typecheck test
