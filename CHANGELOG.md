@@ -5,7 +5,8 @@ This file is auto-generated from git history after each commit.
 
 ## Unreleased
 
-- fix: add ruff cache to clean target and gitignore (aac36a5)
+- fix: toolruff stanzas for linting (c1895a3)
+- fix: add ruff cache to clean target and gitignore (ccc0426)
 - fix: address review findings (3426fcd)
 - docs: add MkDocs documentation (7f933dc)
 - Start v0.2.0 development (6fd361d)
