@@ -5,7 +5,8 @@ This file is auto-generated from git history after each commit.
 
 ## Unreleased
 
-- fix: toolruff stanzas for linting (c1895a3)
+- fix: add setuptools packages.find, fix isort known-first-party (8db598c)
+- fix: toolruff stanzas for linting (22c69c6)
 - fix: add ruff cache to clean target and gitignore (ccc0426)
 - fix: address review findings (3426fcd)
 - docs: add MkDocs documentation (7f933dc)
