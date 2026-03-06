@@ -5,7 +5,8 @@ This file is auto-generated from git history after each commit.
 
 ## Unreleased
 
-- fix: add setuptools packages.find, fix isort known-first-party (8db598c)
+- feat: add --version flag with argparse CLI (95b62fc)
+- fix: add setuptools packages.find, fix isort known-first-party (1635a23)
 - fix: toolruff stanzas for linting (22c69c6)
 - fix: add ruff cache to clean target and gitignore (ccc0426)
 - fix: address review findings (3426fcd)

@@ -59,6 +59,20 @@ print(g.name)       # "Alice"
 
 ---
 
+## hello.main
+
+### `main(argv=None)`
+
+```python
+def main(argv: list[str] | None = None) -> None
+```
+
+CLI entry point using argparse. Supports `-V`/`--version` to print the
+current version and an optional positional `name` argument. Pass `argv`
+explicitly for testing; defaults to `sys.argv[1:]`.
+
+---
+
 ## hello.services
 
 ### `Greeter`

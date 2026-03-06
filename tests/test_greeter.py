@@ -2,7 +2,9 @@
 
 import pytest
 
+from hello import __version__
 from hello.exceptions import InvalidNameError
+from hello.main import main
 from hello.models import Greeting
 from hello.services import Greeter
 from hello.utils import get_salutation
@@ -41,3 +43,20 @@ class TestGreeter:
     def test_greet_empty_raises(self, greeter: Greeter):
         with pytest.raises(InvalidNameError):
             greeter.greet("   ")
+
+
+class TestMain:
+    def test_version(self, capsys: pytest.CaptureFixture[str]):
+        with pytest.raises(SystemExit, match="0"):
+            main(["--version"])
+        assert __version__ in capsys.readouterr().out
+
+    def test_run_with_name(self, capsys: pytest.CaptureFixture[str]):
+        main(["Alice"])
+        output = capsys.readouterr().out
+        assert "Alice" in output
+
+    def test_run_default(self, capsys: pytest.CaptureFixture[str]):
+        main([])
+        output = capsys.readouterr().out
+        assert "World" in output

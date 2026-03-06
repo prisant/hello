@@ -31,6 +31,9 @@ make install
 After installation, the `hello` command is available:
 
 ```bash
+# Show version
+hello --version
+
 # Default — greets "World"
 hello
 
