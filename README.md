@@ -35,12 +35,18 @@ make test-cov
 # Lint, type check, and test in one shot
 make all
 
+# Bump version, commit, and tag
+make bump
+
 # Regenerate changelog manually
 make changelog
 
 # Serve documentation locally
 make docs
 ```
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for the full developer guide including
+git conventions, branching, releasing, and applying patches.
 
 ## Changelog
 
@@ -62,6 +68,7 @@ Commit messages starting with `chore:` or `wip:` are excluded from the changelog
 hello_project/
 ├── LICENSE                # MIT license
 ├── README.md
+├── DEVELOPMENT.md     # Developer cheatsheet
 ├── CHANGELOG.md           # Auto-generated from git history
 ├── .gitignore
 ├── Makefile

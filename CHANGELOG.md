@@ -5,7 +5,8 @@ This file is auto-generated from git history after each commit.
 
 ## Unreleased
 
-- feat: add --version flag with argparse CLI (95b62fc)
+- feat: add DEVELOPMENT.md cheatsheet and make bump target (d505c90)
+- feat: add --version flag with argparse CLI (ff9bb21)
 - fix: add setuptools packages.find, fix isort known-first-party (1635a23)
 - fix: toolruff stanzas for linting (22c69c6)
 - fix: add ruff cache to clean target and gitignore (ccc0426)
