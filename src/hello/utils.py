@@ -10,7 +10,6 @@ def get_salutation(hour: int | None = None) -> str:
 
     if hour < 12:
         return "Good morning"
-    elif hour < 17:
+    if hour < 17:
         return "Good afternoon"
-    else:
-        return "Good evening"
+    return "Good evening"

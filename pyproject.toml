@@ -35,6 +35,7 @@ dev = [
     "pytest-cov",
     "ruff",
     "mypy",
+    "pylint",
     "mkdocs>=1.5",
     "mkdocs-material>=9.0",
 ]
@@ -61,7 +62,7 @@ target-version = "py310"
 src = ["src", "tests"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "N", "W", "UP"]
+select = ["E", "F", "I", "N", "W", "UP", "B", "PLC", "PLE", "PLW", "RUF"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["hello"]
@@ -69,3 +70,24 @@ known-first-party = ["hello"]
 [tool.mypy]
 python_version = "3.10"
 strict = true
+
+[tool.pylint.main]
+load-plugins = []
+
+[tool.pylint."messages control"]
+# Disable rules already covered by ruff (style, imports) or mypy (types)
+disable = [
+    "C0114",  # missing-module-docstring (not required for all modules)
+    "C0115",  # missing-class-docstring (not required for all classes)
+    "C0116",  # missing-function-docstring (not required for all functions)
+    "C0301",  # line-too-long (ruff handles this)
+    "C0411",  # wrong-import-order (ruff isort handles this)
+    "E0611",  # no-name-in-module (mypy handles this)
+    "R0903",  # too-few-public-methods (dataclasses trigger this)
+    "W0611",  # unused-import (ruff F401 handles this)
+    "W0612",  # unused-variable (ruff F841 handles this)
+    "W0613",  # unused-argument (common in interfaces/callbacks)
+]
+
+[tool.pylint.format]
+max-line-length = 88
